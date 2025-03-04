@@ -1,0 +1,28 @@
+{
+  "areas": [
+	{
+	  "id": 0,
+	  "name": "Field",
+	  "description": "A wide, fertile patch of soil ready for wheat.",
+	  "isPlantable": true,
+	  "hasWater": false,
+	  "isStorage": false
+	},
+	{
+	  "id": 1,
+	  "name": "Stone Well",
+	  "description": "A deep well with cool, clear water.",
+	  "isPlantable": false,
+	  "hasWater": true,
+	  "isStorage": false
+	},
+	{
+	  "id": 2,
+	  "name": "Old Barn",
+	  "description": "A weathered barn for storing harvested wheat.",
+	  "isPlantable": false,
+	  "hasWater": false,
+	  "isStorage": true
+	}
+  ]
+}
