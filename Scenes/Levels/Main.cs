@@ -12,11 +12,9 @@ namespace FarmingGame.Scenes.Levels
 
         public override void _Ready()
         {
-            // Get UI nodes
             outputText = GetNode<RichTextLabel>("%OutputText");
             inputField = GetNode<LineEdit>("%InputField");
 
-            // Initialize game
             farmer = new Farmer 
             { 
                 Name = "Farmer Joe", 
@@ -26,7 +24,6 @@ namespace FarmingGame.Scenes.Levels
             
             UpdateOutput();
 
-            // Connect input signal
             inputField.Connect("text_submitted", new Callable(this, nameof(OnInputSubmitted)));
         }
 

@@ -7,7 +7,4 @@
     <Compile Remove="Scenes\UI\**" />
     <EmbeddedResource Remove="Scenes\UI\**" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Scripts\" />
-  </ItemGroup>
 </Project>

@@ -1,6 +1,5 @@
 using FarmingGame.Scripts;
 using Godot;
-using System;
 using System.Collections.Generic;
 
 namespace FarmingGame.Autoloads
@@ -60,19 +59,21 @@ namespace FarmingGame.Autoloads
 
         private void GeneratePaths()
         {
-            // Linear chain: Field (0) -> Stone Well (1) -> Old Barn (2)
             if (FarmAreas.ContainsKey(0) && FarmAreas.ContainsKey(1))
-                FarmAreas[0].Paths["north"] = 1; // Field to Stone Well
+            {
+                FarmAreas[0].Paths["north"] = 1; 
+            }
             if (FarmAreas.ContainsKey(1))
             {
-                FarmAreas[1].Paths["south"] = 0; // Stone Well to Field
-                FarmAreas[1].Paths["north"] = 2; // Stone Well to Old Barn
+                FarmAreas[1].Paths["south"] = 0; 
+                FarmAreas[1].Paths["north"] = 2; 
             }
             if (FarmAreas.ContainsKey(2))
-                FarmAreas[1].Paths["south"] = 1; // Old Barn to Stone Well
+            {
+                FarmAreas[2].Paths["south"] = 1; 
+            }
         }
 
-        // Helper to get an area by ID
         public FarmArea GetArea(int id)
         {
             return FarmAreas.ContainsKey(id) ? FarmAreas[id] : null;
