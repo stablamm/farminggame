@@ -1,10 +1,11 @@
+using FarmingGame.Autoloads;
 using System.Collections.Generic;
 
 namespace FarmingGame.Scripts.Commands
 {
     public class StoreCommand : ICommand
     {
-        public string Execute(Farmer farmer, string[] args, Dictionary<int, FarmArea> farmAreas)
+        public string Execute(Farmer farmer, string[] args, Dictionary<FARM_AREA, FarmArea> farmAreas)
         {
             if (!farmer.CurrentArea.IsStorage)
             {
@@ -14,12 +15,12 @@ namespace FarmingGame.Scripts.Commands
             {
                 return "You can only store wheat for now!";
             }
-            if (!farmer.Inventory.Contains("wheat"))
+            if (!farmer.Inventory.HasItem("wheat"))
             {
                 return "You don’t have any wheat to store!";
             }
             
-            farmer.Inventory.Remove("wheat");
+            farmer.Inventory.RemoveItem("wheat");
             return "You store the wheat in the barn.";
         }
     }

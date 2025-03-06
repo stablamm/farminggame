@@ -18,8 +18,7 @@ namespace FarmingGame.Scenes.Levels
             farmer = new Farmer 
             { 
                 Name = "Farmer Joe", 
-                CurrentArea = AutoloadManager.Instance.FarmGenerator.GetArea(0), 
-                Inventory = new() { "wheat seeds" } 
+                CurrentArea = AutoloadManager.Instance.FarmGenerator.GetArea(FARM_AREA.FIELD)
             };
             
             UpdateOutput();

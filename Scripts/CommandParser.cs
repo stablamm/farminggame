@@ -1,3 +1,4 @@
+using FarmingGame.Autoloads;
 using FarmingGame.Scripts.Commands;
 using System.Collections.Generic;
 
@@ -15,7 +16,7 @@ namespace FarmingGame.Scripts
             { "inventory", new InventoryCommand() }
         };
 
-        public static string Parse(string input, Farmer farmer, Dictionary<int, FarmArea> farmAreas)
+        public static string Parse(string input, Farmer farmer, Dictionary<FARM_AREA, FarmArea> farmAreas)
         {
             if (string.IsNullOrEmpty(input))
             {

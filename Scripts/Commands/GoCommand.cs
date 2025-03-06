@@ -1,10 +1,11 @@
+using FarmingGame.Autoloads;
 using System.Collections.Generic;
 
 namespace FarmingGame.Scripts.Commands
 {
     public class GoCommand : ICommand
     {
-        public string Execute(Farmer farmer, string[] args, Dictionary<int, FarmArea> farmAreas)
+        public string Execute(Farmer farmer, string[] args, Dictionary<FARM_AREA, FarmArea> farmAreas)
         {
             if (args.Length == 0)
             {
@@ -14,7 +15,7 @@ namespace FarmingGame.Scripts.Commands
             string direction = args[0];
             if (farmer.CurrentArea.Paths.ContainsKey(direction))
             {
-                int nextId = farmer.CurrentArea.Paths[direction];
+                FARM_AREA nextId = (FARM_AREA)farmer.CurrentArea.Paths[direction];
                 if (farmAreas.ContainsKey(nextId))
                 {
                     farmer.CurrentArea = farmAreas[nextId];

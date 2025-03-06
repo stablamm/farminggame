@@ -1,10 +1,11 @@
+using FarmingGame.Autoloads;
 using System.Collections.Generic;
 
 namespace FarmingGame.Scripts.Commands
 {
     public class PlantCommand : ICommand
     {
-        public string Execute(Farmer farmer, string[] args, Dictionary<int, FarmArea> farmAreas)
+        public string Execute(Farmer farmer, string[] args, Dictionary<FARM_AREA, FarmArea> farmAreas)
         {
             if (!farmer.CurrentArea.IsPlantable)
             {
@@ -14,7 +15,7 @@ namespace FarmingGame.Scripts.Commands
             {
                 return "You can only plant wheat for now!";
             }
-            if (!farmer.Inventory.Contains("wheat seeds"))
+            if (!farmer.Inventory.HasItem("wheat seeds"))
             {
                 return "You don’t have wheat seeds!";
             }

@@ -4,19 +4,30 @@ using System.Collections.Generic;
 
 namespace FarmingGame.Autoloads
 {
+    public enum FARM_AREA
+    {
+        FIELD,
+        STONE_WELL,
+        OLD_BARN
+    }
+
     public partial class FarmGenerator : Node
     {
         public const string NODE_PATH = "/root/FarmGenerator";
 
-        [Export]
         private string farmLayoutPath = "res://Assets/JSON/farm_layout.json";
 
-        public Dictionary<int, FarmArea> FarmAreas { get; private set; } = new Dictionary<int, FarmArea>();
+        public Dictionary<FARM_AREA, FarmArea> FarmAreas { get; private set; } = new Dictionary<FARM_AREA, FarmArea>();
 
         public override void _Ready()
         {
             LoadFarmLayout();
             GeneratePaths();
+        }
+
+        public FarmArea GetArea(FARM_AREA id)
+        {
+            return FarmAreas.ContainsKey(id) ? FarmAreas[id] : null;
         }
 
         private void LoadFarmLayout()
@@ -53,30 +64,25 @@ namespace FarmingGame.Autoloads
                     HasWater = (bool)areaDict["hasWater"],
                     IsStorage = (bool)areaDict["isStorage"]
                 };
-                FarmAreas[area.Id] = area;
+                FarmAreas[(FARM_AREA)area.Id] = area;
             }
         }
 
         private void GeneratePaths()
         {
-            if (FarmAreas.ContainsKey(0) && FarmAreas.ContainsKey(1))
+            if (FarmAreas.ContainsKey(FARM_AREA.FIELD) && FarmAreas.ContainsKey(FARM_AREA.STONE_WELL))
             {
-                FarmAreas[0].Paths["north"] = 1; 
+                FarmAreas[FARM_AREA.FIELD].Paths["north"] = (int)FARM_AREA.STONE_WELL; 
             }
-            if (FarmAreas.ContainsKey(1))
+            if (FarmAreas.ContainsKey(FARM_AREA.STONE_WELL))
             {
-                FarmAreas[1].Paths["south"] = 0; 
-                FarmAreas[1].Paths["north"] = 2; 
+                FarmAreas[FARM_AREA.STONE_WELL].Paths["south"] = (int)FARM_AREA.FIELD; 
+                FarmAreas[FARM_AREA.STONE_WELL].Paths["north"] = (int)FARM_AREA.OLD_BARN; 
             }
-            if (FarmAreas.ContainsKey(2))
+            if (FarmAreas.ContainsKey(FARM_AREA.OLD_BARN))
             {
-                FarmAreas[2].Paths["south"] = 1; 
+                FarmAreas[FARM_AREA.OLD_BARN].Paths["south"] = (int)FARM_AREA.STONE_WELL; 
             }
-        }
-
-        public FarmArea GetArea(int id)
-        {
-            return FarmAreas.ContainsKey(id) ? FarmAreas[id] : null;
         }
     }
 }

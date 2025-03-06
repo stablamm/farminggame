@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace FarmingGame.Scripts
 {
     public partial class Farmer
@@ -7,6 +5,6 @@ namespace FarmingGame.Scripts
         public string Name { get; set; }
         public bool HasWater { get; set; }
         public FarmArea CurrentArea { get; set; }
-        public List<string> Inventory { get; set; } = new List<string>();
+        public Inventory Inventory { get; set; } = new();
     }
 }
