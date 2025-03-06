@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace FarmingGame.Scripts.Commands
 {
-    public class GoCommand : ICommand
+    public class GoCommand : BaseCommand, ICommand
     {
         public string Execute(Farmer farmer, string[] args, Dictionary<FARM_AREA, FarmArea> farmAreas)
         {
@@ -25,12 +25,6 @@ namespace FarmingGame.Scripts.Commands
             }
 
             return "No path that way!";
-        }
-
-        private string GetAreaDescription(FarmArea area)
-        {
-            string crops = area.Crops.Count > 0 ? " Growing here: " + string.Join(", ", area.Crops) : " Nothing is growing here yet.";
-            return $"{area.Description}{crops}";
         }
     }
 }
