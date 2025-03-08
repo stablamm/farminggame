@@ -1,11 +1,18 @@
+using Godot;
+
 namespace FarmingGame.Scripts.Items
 {
-    public class Item
+    public abstract class Item
     {
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public bool IsStackable { get; set; }
-        public int MaxStack { get; set; } = 99;
+        public abstract string Name { get; }
+        public abstract string Description { get; }
+        public abstract bool IsStackable { get; }
+        public abstract int MaxStack { get; }
+
+        public virtual void Use()
+        {
+            GD.Print($"{Name} used.");
+        }
 
         public override string ToString()
         {

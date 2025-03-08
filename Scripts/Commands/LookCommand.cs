@@ -1,13 +1,10 @@
-using FarmingGame.Autoloads;
-using System.Collections.Generic;
-
 namespace FarmingGame.Scripts.Commands
 {
     public class LookCommand : BaseCommand, ICommand
     {
-        public string Execute(Farmer farmer, string[] args, Dictionary<FARM_AREA, FarmArea> farmAreas)
+        public string Execute(Farmer farmer, string[] args)
         {
-            return GetAreaDescription(farmer.CurrentArea);
+            return GetAreaDescription();
         }
     }
 }

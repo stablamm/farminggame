@@ -1,4 +1,3 @@
-using FarmingGame.Autoloads;
 using FarmingGame.Scripts.Commands;
 using System.Collections.Generic;
 
@@ -13,10 +12,11 @@ namespace FarmingGame.Scripts
             { "plant", new PlantCommand() },
             { "get", new GetCommand() },
             { "store", new StoreCommand() },
-            { "inventory", new InventoryCommand() }
+            { "inventory", new InventoryCommand() },
+            { "pickup", new PickupCommand() },
         };
 
-        public static string Parse(string input, Farmer farmer, Dictionary<FARM_AREA, FarmArea> farmAreas)
+        public static string Parse(string input, Farmer farmer)
         {
             if (string.IsNullOrEmpty(input))
             {
@@ -30,16 +30,10 @@ namespace FarmingGame.Scripts
 
             if (Commands.TryGetValue(command, out ICommand c))
             {
-                return c.Execute(farmer, args, farmAreas);
+                return c.Execute(farmer, args);
             }
 
-            return "Huh? Try 'look', 'go <direction>', 'plant wheat', 'get water', 'store wheat', or 'inventory'.";
-        }
-
-        private static string GetAreaDescription(FarmArea area)
-        {
-            string crops = area.Crops.Count > 0 ? " Growing here: " + string.Join(", ", area.Crops) : " Nothing is growing here yet.";
-            return $"{area.Description}{crops}";
+            return "Huh? Try 'look', 'go <direction>', 'plant wheat', 'get water', 'store wheat', 'pickup wheat seed', or 'inventory'.";
         }
     }
 }

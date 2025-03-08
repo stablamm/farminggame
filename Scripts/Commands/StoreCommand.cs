@@ -1,26 +1,23 @@
-using FarmingGame.Autoloads;
-using System.Collections.Generic;
-
 namespace FarmingGame.Scripts.Commands
 {
     public class StoreCommand : ICommand
     {
-        public string Execute(Farmer farmer, string[] args, Dictionary<FARM_AREA, FarmArea> farmAreas)
+        public string Execute(Farmer farmer, string[] args)
         {
-            if (!farmer.CurrentArea.IsStorage)
-            {
-                return "You can’t store anything here!";
-            }
-            if (args[1] != "wheat")
-            {
-                return "You can only store wheat for now!";
-            }
-            if (!farmer.Inventory.HasItem("wheat"))
-            {
-                return "You don’t have any wheat to store!";
-            }
+            //if (!farmer.CurrentArea.IsStorage)
+            //{
+            //    return "You can’t store anything here!";
+            //}
+            //if (args[1] != "wheat")
+            //{
+            //    return "You can only store wheat for now!";
+            //}
+            //if (!farmer.Inventory.HasItem("wheat"))
+            //{
+            //    return "You don’t have any wheat to store!";
+            //}
             
-            farmer.Inventory.RemoveItem("wheat");
+            //farmer.Inventory.RemoveItem("wheat");
             return "You store the wheat in the barn.";
         }
     }

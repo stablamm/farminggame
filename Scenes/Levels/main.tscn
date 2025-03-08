@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cminvd76rbk8v"]
+[gd_scene load_steps=3 format=3 uid="uid://cminvd76rbk8v"]
 
 [ext_resource type="Script" uid="uid://dkppa8jog1o8f" path="res://Scenes/Levels/Main.cs" id="1_s0gyx"]
+[ext_resource type="FontFile" uid="uid://croth7rp1hrqh" path="res://Assets/Fonts/JetBrainsMono-Regular.ttf" id="2_yjsus"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_s0gyx")
@@ -34,7 +35,9 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("2_yjsus")
 bbcode_enabled = true
+scroll_following = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2

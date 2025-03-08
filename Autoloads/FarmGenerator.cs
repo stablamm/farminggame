@@ -1,6 +1,5 @@
 using FarmingGame.Scripts;
 using Godot;
-using System.Collections.Generic;
 
 namespace FarmingGame.Autoloads
 {
@@ -17,17 +16,9 @@ namespace FarmingGame.Autoloads
 
         private string farmLayoutPath = "res://Assets/JSON/farm_layout.json";
 
-        public Dictionary<FARM_AREA, FarmArea> FarmAreas { get; private set; } = new Dictionary<FARM_AREA, FarmArea>();
-
         public override void _Ready()
         {
             LoadFarmLayout();
-            GeneratePaths();
-        }
-
-        public FarmArea GetArea(FARM_AREA id)
-        {
-            return FarmAreas.ContainsKey(id) ? FarmAreas[id] : null;
         }
 
         private void LoadFarmLayout()
@@ -57,31 +48,15 @@ namespace FarmingGame.Autoloads
                 var areaDict = areaData.AsGodotDictionary();
                 var area = new FarmArea
                 {
-                    Id = (int)(float)areaDict["id"],
+                    Id = (FARM_AREA)(int)(float)areaDict["id"],
                     Name = areaDict["name"].ToString(),
                     Description = areaDict["description"].ToString(),
                     IsPlantable = (bool)areaDict["isPlantable"],
                     HasWater = (bool)areaDict["hasWater"],
                     IsStorage = (bool)areaDict["isStorage"]
                 };
-                FarmAreas[(FARM_AREA)area.Id] = area;
-            }
-        }
-
-        private void GeneratePaths()
-        {
-            if (FarmAreas.ContainsKey(FARM_AREA.FIELD) && FarmAreas.ContainsKey(FARM_AREA.STONE_WELL))
-            {
-                FarmAreas[FARM_AREA.FIELD].Paths["north"] = (int)FARM_AREA.STONE_WELL; 
-            }
-            if (FarmAreas.ContainsKey(FARM_AREA.STONE_WELL))
-            {
-                FarmAreas[FARM_AREA.STONE_WELL].Paths["south"] = (int)FARM_AREA.FIELD; 
-                FarmAreas[FARM_AREA.STONE_WELL].Paths["north"] = (int)FARM_AREA.OLD_BARN; 
-            }
-            if (FarmAreas.ContainsKey(FARM_AREA.OLD_BARN))
-            {
-                FarmAreas[FARM_AREA.OLD_BARN].Paths["south"] = (int)FARM_AREA.STONE_WELL; 
+                area.Instantiate();
+                AutoloadManager.Instance.GameManager.Areas.AddNewArea(area.AreaId, area);
             }
         }
     }

@@ -1,27 +1,58 @@
 using FarmingGame.Autoloads;
-using System.Collections.Generic;
 
 namespace FarmingGame.Scripts.Commands
 {
     public class GoCommand : BaseCommand, ICommand
     {
-        public string Execute(Farmer farmer, string[] args, Dictionary<FARM_AREA, FarmArea> farmAreas)
+        public string Execute(Farmer farmer, string[] args)
         {
             if (args.Length == 0)
             {
                 return "Go where?";
             }
 
-            string direction = args[0];
-            if (farmer.CurrentArea.Paths.ContainsKey(direction))
+            if (args.Length == 1)
             {
-                FARM_AREA nextId = (FARM_AREA)farmer.CurrentArea.Paths[direction];
-                if (farmAreas.ContainsKey(nextId))
+                var playerPos = AutoloadManager.Instance.GameManager.Player.Position;
+                var a = args[0];
+
+                if (a == "north")
                 {
-                    farmer.CurrentArea = farmAreas[nextId];
-                    return $"You walk to {farmer.CurrentArea.Name}.\n{GetAreaDescription(farmer.CurrentArea)}";
+                    if (AutoloadManager.Instance.GameManager.Map.IsValidPosition((int)playerPos.X - 1, (int)playerPos.Y))
+                    {
+                        AutoloadManager.Instance.GameManager.Player.UpdatePosition(new Godot.Vector2(playerPos.X - 1, playerPos.Y));
+
+                        return "Moved north";
+                    }
                 }
-                return "Path leads nowhere!";
+                else if (a == "east")
+                {
+                    if (AutoloadManager.Instance.GameManager.Map.IsValidPosition((int)playerPos.X, (int)playerPos.Y + 1))
+                    {
+                        AutoloadManager.Instance.GameManager.Player.UpdatePosition(new Godot.Vector2(playerPos.X, playerPos.Y + 1));
+
+                        return "Moved east";
+                    }
+                }
+                else if (a == "south")
+                {
+                    if (AutoloadManager.Instance.GameManager.Map.IsValidPosition((int)playerPos.X + 1, (int)playerPos.Y))
+                    {
+                        AutoloadManager.Instance.GameManager.Player.UpdatePosition(new Godot.Vector2(playerPos.X + 1, playerPos.Y));
+
+                        return "Moved south";
+                    }
+                }
+                else if (a == "west")
+                {
+                    if (AutoloadManager.Instance.GameManager.Map.IsValidPosition((int)playerPos.X, (int)playerPos.Y - 1))
+                    {
+                        AutoloadManager.Instance.GameManager.Player.UpdatePosition(new Godot.Vector2(playerPos.X, playerPos.Y - 1));
+                        
+                        return "Moved west";
+                    }
+                }
+
             }
 
             return "No path that way!";
