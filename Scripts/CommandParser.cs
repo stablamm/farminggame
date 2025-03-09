@@ -14,9 +14,11 @@ namespace FarmingGame.Scripts
             { "store", new StoreCommand() },
             { "inventory", new InventoryCommand() },
             { "pickup", new PickupCommand() },
+            { "take", new PickupCommand() },
+            { "fill", new FillCommand() }
         };
 
-        public static string Parse(string input, Farmer farmer)
+        public static string Parse(string input)
         {
             if (string.IsNullOrEmpty(input))
             {
@@ -30,7 +32,7 @@ namespace FarmingGame.Scripts
 
             if (Commands.TryGetValue(command, out ICommand c))
             {
-                return c.Execute(farmer, args);
+                return c.Execute(args);
             }
 
             return "Huh? Try 'look', 'go <direction>', 'plant wheat', 'get water', 'store wheat', 'pickup wheat seed', or 'inventory'.";

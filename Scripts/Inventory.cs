@@ -142,7 +142,7 @@ namespace FarmingGame.Scripts
             List<string> itemDescriptions = new List<string>();
             foreach (var invItem in items)
             {
-                itemDescriptions.Add($"{invItem.Item.Name} (x{invItem.Quantity})");
+                itemDescriptions.Add($"{invItem.Item.ToString()} (x{invItem.Quantity})");
             }
             return string.Join(", ", itemDescriptions);
         }

@@ -14,5 +14,5 @@ namespace FarmingGame.Scripts
         }
 
         public Inventory GetInventory() => AutoloadManager.Instance.GameManager.Inventory.AllInventories[ID];
-}
+    }
 }

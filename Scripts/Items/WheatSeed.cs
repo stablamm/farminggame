@@ -9,10 +9,11 @@ namespace FarmingGame.Scripts.Items
         public override bool IsStackable => true;
         public override int MaxStack => 50;
 
-        public override void Use()
+        public override bool Use()
         {
             // Custom logic for planting wheat.
             GD.Print("You plant the wheat seed.");
+            return true;
         }
     }
 }

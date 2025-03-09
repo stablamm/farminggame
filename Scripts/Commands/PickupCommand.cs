@@ -5,7 +5,7 @@ namespace FarmingGame.Scripts.Commands
 {
     public class PickupCommand : ICommand
     {
-        public string Execute(Farmer farmer, string[] args)
+        public string Execute(string[] args)
         {
             // Ensure the player specified what to pick up.
             if (args == null || args.Length == 0)
@@ -20,7 +20,7 @@ namespace FarmingGame.Scripts.Commands
             var playerCellId = AutoloadManager.Instance.GameManager.Map.GetMapCell((int)playerPosition.X, (int)playerPosition.Y);
             var cell = AutoloadManager.Instance.GameManager.Areas.AllAreas[playerCellId];
             var cellInventory = AutoloadManager.Instance.GameManager.Inventory.AllInventories[cell.InventoryId];
-            var item = cellInventory.Items.First(i => i.Item.Name.ToLower().Contains(targetItemName));
+            var item = cellInventory.Items.FirstOrDefault(i => i.Item.Name.ToLower() == targetItemName);
 
             if (item == null)
             {

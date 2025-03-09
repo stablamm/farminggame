@@ -25,6 +25,10 @@ namespace FarmingGame.Scenes.Levels
                 {
                     area.Value.AddItem(new WheatSeed(), 1);
                 }
+                else if (area.Value.Id == FARM_AREA.OLD_BARN)
+                {
+                    area.Value.AddItem(new WateringCan(), 1);
+                }
             }
             
             inputField.Connect("text_submitted", new Callable(this, nameof(OnInputSubmitted)));
@@ -33,7 +37,7 @@ namespace FarmingGame.Scenes.Levels
 
         private void OnInputSubmitted(string text)
         {
-            string result = CommandParser.Parse(text, farmer);
+            string result = CommandParser.Parse(text);
             outputText.Text += $"\n> {text}\n{result}";
             inputField.Clear();
         }

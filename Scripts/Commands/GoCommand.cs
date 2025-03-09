@@ -4,7 +4,7 @@ namespace FarmingGame.Scripts.Commands
 {
     public class GoCommand : BaseCommand, ICommand
     {
-        public string Execute(Farmer farmer, string[] args)
+        public string Execute(string[] args)
         {
             if (args.Length == 0)
             {

@@ -2,7 +2,7 @@ namespace FarmingGame.Scripts.Commands
 {
     public class GetCommand : ICommand
     {
-        public string Execute(Farmer farmer, string[] args)
+        public string Execute(string[] args)
         {
             //if (args[1] == "water")
             //{

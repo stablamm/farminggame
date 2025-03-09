@@ -2,7 +2,7 @@ namespace FarmingGame.Scripts.Commands
 {
     public class StoreCommand : ICommand
     {
-        public string Execute(Farmer farmer, string[] args)
+        public string Execute(string[] args)
         {
             //if (!farmer.CurrentArea.IsStorage)
             //{

@@ -42,6 +42,10 @@ scroll_following = true
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
+[node name="Label" type="Label" parent="Control/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = ">"
+
 [node name="InputField" type="LineEdit" parent="Control/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2

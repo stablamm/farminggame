@@ -9,14 +9,16 @@ namespace FarmingGame.Scripts.Items
         public abstract bool IsStackable { get; }
         public abstract int MaxStack { get; }
 
-        public virtual void Use()
+        public virtual bool Use()
         {
             GD.Print($"{Name} used.");
+            return true;
         }
 
         public override string ToString()
         {
-            return $"{Name}: {Description} (Stackable: {IsStackable}, MaxStack: {MaxStack})";
+            return Name;
+            //return $"{Name}: {Description} (Stackable: {IsStackable}, MaxStack: {MaxStack})";
         }
     }
 }
