@@ -9,11 +9,11 @@ namespace FarmingGame.Scripts.Commands
         {
             var playerPosition = AutoloadManager.Instance.GameManager.Player.Position;
             var playerCellId = AutoloadManager.Instance.GameManager.Map.GetMapCell((int)playerPosition.X, (int)playerPosition.Y);
-            var cell = AutoloadManager.Instance.GameManager.Areas.AllAreas[playerCellId];
-            var loots = AutoloadManager.Instance.GameManager.Inventory.AllInventories[cell.InventoryId];
+            var area = AutoloadManager.Instance.GameManager.Areas.AllAreas[playerCellId];
+            var loots = AutoloadManager.Instance.GameManager.Inventory.AllInventories[area.InventoryId];
             var exits = AutoloadManager.Instance.GameManager.Map.GetExits((int)playerPosition.X, (int) playerPosition.Y);
 
-            var areaDescription = cell.Description;
+            var areaDescription = area.Description;
 
             if (loots.Items.Count > 0)
             { 

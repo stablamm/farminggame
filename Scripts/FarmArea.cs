@@ -15,7 +15,6 @@ namespace FarmingGame.Scripts
         public bool IsPlantable { get; set; }
         public bool HasWater { get; set; }
         public bool IsStorage { get; set; }
-        //public Dictionary<string, int> Paths { get; set; } = new();
         public List<string> Crops { get; set; } = new();
 
         private bool isInstantiated = false;

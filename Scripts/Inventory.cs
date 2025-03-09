@@ -144,6 +144,7 @@ namespace FarmingGame.Scripts
             {
                 itemDescriptions.Add($"{invItem.Item.ToString()} (x{invItem.Quantity})");
             }
+
             return string.Join(", ", itemDescriptions);
         }
     }

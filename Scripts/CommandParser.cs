@@ -15,7 +15,8 @@ namespace FarmingGame.Scripts
             { "inventory", new InventoryCommand() },
             { "pickup", new PickupCommand() },
             { "take", new PickupCommand() },
-            { "fill", new FillCommand() }
+            { "fill", new FillCommand() },
+            { "water", new WaterCommand() },
         };
 
         public static string Parse(string input)
