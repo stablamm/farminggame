@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkg8fpo45ybgf"
-path="res://.godot/imported/FarmerJohn.png-0619c339cbf4054b22e03837012c1391.ctex"
+uid="uid://cakkp5qmffu1i"
+path="res://.godot/imported/7_Pickup_Items_32x32.png-edc423aba628f86c10ca5576a38b64f2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/NPC/FarmerJohn.png"
-dest_files=["res://.godot/imported/FarmerJohn.png-0619c339cbf4054b22e03837012c1391.ctex"]
+source_file="res://Assets/Sprites/ModernFarm/7_Pickup_Items_32x32.png"
+dest_files=["res://.godot/imported/7_Pickup_Items_32x32.png-edc423aba628f86c10ca5576a38b64f2.ctex"]
 
 [params]
 

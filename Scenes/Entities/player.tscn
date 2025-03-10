@@ -1,6 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cnsjjnc0v8n0l"]
-
-[ext_resource type="Texture2D" uid="uid://dkg8fpo45ybgf" path="res://Assets/Sprites/NPC/FarmerJohn.png" id="1_blnjl"]
+[gd_scene load_steps=2 format=3 uid="uid://cnsjjnc0v8n0l"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_blnjl"]
 
@@ -8,7 +6,6 @@
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -32)
-texture = ExtResource("1_blnjl")
 hframes = 4
 region_enabled = true
 region_rect = Rect2(0, 0, 128, 64)
