@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://4uj2778m5fx5"]
+
+[ext_resource type="PackedScene" uid="uid://gsxhwkh4vuyp" path="res://Scenes/Crops/crop.tscn" id="1_xqawf"]
+[ext_resource type="Script" uid="uid://dg65d38wejcmw" path="res://Scenes/Crops/Inherited/Lettuce.cs" id="2_531b7"]
+
+[node name="Lettuce" instance=ExtResource("1_xqawf")]
+script = ExtResource("2_531b7")

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://gsxhwkh4vuyp"]
+
+[ext_resource type="Script" uid="uid://gqquo10cpp5p" path="res://Scenes/Crops/Crop.cs" id="1_1i0p8"]
+[ext_resource type="Texture2D" uid="uid://d0d1phm3r54o8" path="res://Assets/Sprites/ModernFarm/4_Crops_32x32.png" id="1_1vkwo"]
+
+[node name="Crop" type="Node2D"]
+script = ExtResource("1_1i0p8")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("1_1vkwo")
+hframes = 20
+vframes = 19
+frame = 1
+
+[node name="GrowTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="GrowTimer" to="." method="OnGrowTimerTimeout"]

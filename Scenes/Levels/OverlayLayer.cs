@@ -1,25 +1,35 @@
 using Godot;
+using System.Collections.Generic;
 
 namespace FarmingGame.Scenes.Levels
 {
     public partial class OverlayLayer : TileMapLayer
     {
-        // Direct reference to the ground layer (which should have tiles with a custom "IsSoil" property).
         [Export]
-        public TileMapLayer GroundLayer;
+        public NavigationLayer NavigationLayer;
+
+        [Export]
+        public GroundLayer GroundLayer;
 
         private Vector2I previousCell = new Vector2I(-1, -1);
+        private List<Vector2I> navigationCells = new List<Vector2I>();
+        private List<Vector2I> pathCells = new List<Vector2I>();
         private bool hoverActive = false;
 
         public override void _Ready()
         {
-            SetProcessInput(true);
-            SetProcess(true);
             ZIndex = 999;
         }
 
         public override void _Input(InputEvent @event)
         {
+            if (@event is InputEventMouseButton mouseButton)
+            {
+                if (mouseButton.ButtonIndex == MouseButton.Left && mouseButton.IsPressed() && !mouseButton.IsEcho())
+                {
+                    GD.Print(GroundLayer.GetMouseCell());
+                }
+            }
             // Toggle hover effect when the Tab key is pressed (ignoring repeats).
             if (@event is InputEventKey keyEvent && keyEvent.Pressed && !keyEvent.Echo)
             {
@@ -33,6 +43,30 @@ namespace FarmingGame.Scenes.Levels
                     {
                         SetCell(previousCell, -1, Vector2I.Zero);
                         previousCell = new Vector2I(-1, -1);
+                    }
+                }
+                else if (keyEvent.Keycode == Key.Tab)
+                {
+                    //reset
+                    foreach (var cell in navigationCells)
+                    {
+                        SetCell(cell, -1, Vector2I.Zero);
+                    }
+                    navigationCells.Clear();
+
+                    //readd
+                    foreach (var cell in NavigationLayer.GetUsedCells())
+                    {
+                        if (NavigationLayer.IsWalkable(cell))
+                        {
+                            navigationCells.Add(cell);
+                        }
+                    }
+
+                    //redraw
+                    foreach (var cell in navigationCells)
+                    {
+                        SetCell(cell, 1, Vector2I.Zero);
                     }
                 }
             }
@@ -105,6 +139,20 @@ namespace FarmingGame.Scenes.Levels
                 }
                 SetCell(cell, 1, Vector2I.Zero);
                 previousCell = cell;
+            }
+        }
+
+        public void DrawPath(Vector2[] path)
+        {
+            foreach (var p in path)
+            {
+                var local = LocalToMap(p);
+                pathCells.Add(local);
+            }
+
+            foreach (var c in pathCells)
+            {
+                SetCell(c, 1, Vector2I.Zero);
             }
         }
 
